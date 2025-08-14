@@ -7,3 +7,7 @@ spring:
     url: jdbc:mysql://localhost:0809/oy
     username: root
     password: mysql
+
+  jpa:
+    hibernate:
+      ddl-auto: update
