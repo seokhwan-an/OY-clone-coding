@@ -17,4 +17,10 @@ data class Price(
         require(value.compareTo(BigDecimal.ZERO) > 0) {"상품 가격은 0원보다 커야 합니다."}
         require(value.compareTo(MAX_PRICE) <= 0) {"상품 가격은 500,000원보다 이하여야 합니다."}
     }
+
+    companion object {
+        fun from(value: Int): Price {
+            return Price(BigDecimal.valueOf(value.toLong()))
+        }
+    }
 }

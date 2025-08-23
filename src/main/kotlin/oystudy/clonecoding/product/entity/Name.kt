@@ -14,4 +14,10 @@ data class Name(
         require(value.isNotBlank()) { "상품명은 비어 있을 수 없습니다." }
         require(value.length <= LENGTH) {"상품명은 50자 이하여야 합니다."}
     }
+
+    companion object {
+        fun from(value: String): Name {
+            return Name(value)
+        }
+    }
 }
