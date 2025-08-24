@@ -5,7 +5,7 @@ import oystudy.clonecoding.global.entity.BaseTimeEntity
 
 @Entity
 @Table(
-    name = "products"
+    name = "product"
 )
 class Product(
     @Embedded
