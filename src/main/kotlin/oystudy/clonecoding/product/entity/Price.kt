@@ -10,7 +10,7 @@ private val MAX_PRICE = BigDecimal.valueOf(500_000)
 data class Price(
 
     @Column(nullable = false, name = "price")
-    val value: BigDecimal
+    var value: BigDecimal
 
 ) {
     init {
@@ -18,9 +18,20 @@ data class Price(
         require(value.compareTo(MAX_PRICE) <= 0) {"상품 가격은 500,000원보다 이하여야 합니다."}
     }
 
+    private fun validate(v: BigDecimal) {
+        require(v.compareTo(BigDecimal.ZERO) > 0) {"상품 가격은 0원보다 커야 합니다."}
+        require(v.compareTo(MAX_PRICE) <= 0) {"상품 가격은 500,000원보다 이하여야 합니다."}
+    }
+
     companion object {
         fun from(value: Int): Price {
             return Price(BigDecimal.valueOf(value.toLong()))
         }
+    }
+
+    fun update(request: Int) {
+        val toBigDecimal = BigDecimal.valueOf(request.toLong())
+        validate(toBigDecimal)
+        this.value = toBigDecimal
     }
 }
